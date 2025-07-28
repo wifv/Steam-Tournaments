@@ -1,5 +1,5 @@
 const exampleBlock = `
-<div class="tournament">
+<div class="tournament" data-id="hello">
   <div class="tournament-team-logo"><img src="./test.png" alt="team-logo"></div>
   <div class="tournament-name">Blitzkrieg</div>
   <div class="tournament-format">Format solo/team</div>
@@ -16,6 +16,7 @@ const exampleBlock = `
 `;
 
 const tournaments = document.getElementById("tournaments");
+const username_element = document.getElementById("username");
 
 fetch('https://dummyjson.com/products', {
   method: "GET",
@@ -44,7 +45,7 @@ if (tg) {
     
     if (user.username) {
       username += ` @${user.username}`
-      tournaments.textContent = username;
+      username_element.textContent = username;
     }
   }
 }

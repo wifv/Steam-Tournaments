@@ -50,6 +50,13 @@ html {
   font-size: 40px;
 }
 
+.header-2 {
+  width: 100%;
+  text-align: center;
+
+  font-size: 30px;
+}
+
 .tournaments {
   margin-top: 40px;
   display: flex;
@@ -172,7 +179,7 @@ html {
 }
 
 .form-container {
-  /* visibility: hidden; */
+  visibility: hidden;
   background-color: #44444480;
   width: 100%;
   height: 100%;
