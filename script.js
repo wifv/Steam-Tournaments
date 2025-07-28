@@ -32,3 +32,19 @@ fetch('https://dummyjson.com/products', {
     }
   });
 
+const tg = window.Telegram.WebApp
+
+let username = "Username"
+
+if (tg) {
+  const user = tg.initDataUnsafe.user
+
+  if (user) {
+    username = user.first_name || user.id
+    
+    if (user.username) {
+      username += ` @${user.username}`
+      tournaments.textContent = username;
+    }
+  }
+}
