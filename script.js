@@ -17,20 +17,31 @@ const exampleBlock = `
 
 const tournaments = document.getElementById("tournaments");
 const username_element = document.getElementById("username");
+const form = document.getElementById("formContainer");
 
 fetch('https://dummyjson.com/products', {
   method: "GET",
 })
   .then(res => res.json())
   .then(json => {
-    console.log(json)
+    let tournamentsHTML = '';
     for (let i = 0; i < json.products.length; i++) {
-      tournaments.innerHTML += exampleBlock
-      tournaments.children[i].children[1].textContent = json.products[i].title
-      // tournaments.children[i].children[2].textContent = "solo/team"
-      tournaments.children[i].children[3].textContent = "Time: " + json.products[i].price
-      tournaments.children[i].children[4].firstElementChild.textContent = json.products[i].description
+      tournamentsHTML += exampleBlock
+        .replace('Blitzkrieg', json.products[i].title)
+        .replace('Time: 19:00', `Time: ${json.products[i].price}`)
+        .replace('Lorem ipsum dolor sit amet...', json.products[i].description);
     }
+    tournaments.innerHTML = tournamentsHTML;
+
+    // Attach event listeners after rendering
+    Array.from(tournaments.children).forEach(tournament => {
+      tournament.querySelector('.form-open').addEventListener('click', () => {
+        form.style.visibility = "visible";
+        form.firstElementChild.firstElementChild.firstElementChild.textContent = tournament.children[1].textContent
+        console.log('Register button clicked');
+        document.body.style.overflow = '';
+      });
+    });
   });
 
 const tg = window.Telegram.WebApp
@@ -42,10 +53,37 @@ if (tg) {
 
   if (user) {
     username = user.first_name || user.id
-    
+
     if (user.username) {
       username += ` @${user.username}`
       username_element.textContent = username;
     }
   }
 }
+
+const loader = document.getElementById('loader')
+const success = document.getElementById('success')
+
+document.getElementById('background').addEventListener('click', () => {
+  form.style.visibility = 'hidden'
+  success.style.visibility = 'hidden'
+  document.body.style.overflow = '';
+})
+
+document.getElementById('quit-button').addEventListener('click', () => {
+  form.style.visibility = 'hidden'
+  success.style.visibility = 'hidden'
+  document.body.style.overflow = '';
+})
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  loader.style.visibility = 'visible'
+
+  setTimeout(() => {
+    loader.style.visibility = 'hidden'
+    success.style.visibility = 'visible'
+  }, 1319)
+  console.log('gay')
+})
