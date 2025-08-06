@@ -39,7 +39,6 @@ fetch('https://dummyjson.com/products', {
         form.style.visibility = "visible";
         form.firstElementChild.firstElementChild.firstElementChild.textContent = tournament.children[1].textContent
         console.log('Register button clicked');
-        document.body.style.overflow = '';
       });
     });
   });
@@ -67,23 +66,25 @@ const success = document.getElementById('success')
 document.getElementById('background').addEventListener('click', () => {
   form.style.visibility = 'hidden'
   success.style.visibility = 'hidden'
-  document.body.style.overflow = '';
 })
 
 document.getElementById('quit-button').addEventListener('click', () => {
   form.style.visibility = 'hidden'
   success.style.visibility = 'hidden'
-  document.body.style.overflow = '';
 })
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-
+  
+  success.style.visibility = 'hidden'
   loader.style.visibility = 'visible'
 
+  const elements = form.querySelectorAll("input, textarea, button, select");
+  elements.forEach(el => el.disabled = true);
+  
   setTimeout(() => {
     loader.style.visibility = 'hidden'
     success.style.visibility = 'visible'
+    elements.forEach(el => el.disabled = false);
   }, 1319)
-  console.log('gay')
 })

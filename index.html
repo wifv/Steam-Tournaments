@@ -24,23 +24,24 @@
         <div class="form-inputs">
           <div id="current-tournament-id">Name</div>
           <div id="quit-button">X</div>
-          <label for="player-name" class="player-name-label">Name</label>
-          <input type="text" class="player-name" id="player-name" name="player-name" required/>
-          
-          <label for="player-nickname" class="player-nickname-label">Nickname</label>
-          <input type="text" class="player-nickname" id="player-nickname" name="player-nickname" required/>
-          
-          <label for="player-phone" class="player-phone-label">Phone Number</label>
-          <input type="text" class="player-phone" id="player-phone" name="player-phone" required/>
-          
+          <label for="player-name" class="player-name-label">Name *</label>
+          <input type="text" class="player-name form-input" id="player-name" name="player-name" required />
+
+          <label for="player-nickname" class="player-nickname-label">Nickname *</label>
+          <input type="text" class="player-nickname form-input" id="player-nickname" name="player-nickname" required />
+
+          <label for="player-phone" class="player-phone-label">Phone Number *</label>
+          <input type="number" class="player-phone form-input" id="player-phone" name="player-phone" required />
+
           <label for="player-steam" class="player-steam-label">Steam Nickname</label>
-          <input type="text" class="player-steam" id="player-steam" name="player-steam" />
-          
+          <input type="text" class="player-steam form-input" id="player-steam" name="player-steam" />
+
           <label for="player-faceit" class="player-faceit-label">FACIT Nickname</label>
-          <input type="text" class="player-faceit" id="player-faceit" name="player-faceit" />
-          
+          <input type="text" class="player-faceit form-input" id="player-faceit" name="player-faceit" />
+
           <label for="player-comment" class="player-comment-label">Comment</label>
-          <input type="text" class="player-comment" id="player-comment" name="player-comment" />
+          <textarea type="text" class="player-comment form-input" id="player-comment" name="player-comment">
+          </textarea>
         </div>
         <button type="submit" id="form-button" class="form-button">Register</button>
       </form>
