@@ -75,16 +75,31 @@ document.getElementById('quit-button').addEventListener('click', () => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  
+
+  const data = new FormData(form.firstElementChild);
+
   success.style.visibility = 'hidden'
   loader.style.visibility = 'visible'
-
   const elements = form.querySelectorAll("input, textarea, button, select");
   elements.forEach(el => el.disabled = true);
-  
-  setTimeout(() => {
-    loader.style.visibility = 'hidden'
-    success.style.visibility = 'visible'
-    elements.forEach(el => el.disabled = false);
-  }, 1319)
+
+  fetch('https://dummyjson.com/products/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: data.get('player-name'),
+      price: data.get('player-nickname'),
+      brand: data.get('player-phone'),
+      category: username,
+      // brand: data.get('player-faceit'),
+      // brand: data.get('player-comment'),
+    })
+  })
+    .then(res => res.json())
+    .then((result) => {
+      loader.style.visibility = 'hidden'
+      success.style.visibility = 'visible'
+      elements.forEach(el => el.disabled = false);
+      console.log(result)
+    });
 })
